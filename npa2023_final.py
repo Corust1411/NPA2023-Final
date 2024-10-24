@@ -78,35 +78,35 @@ while True:
 # 5. Complete the logic for each command
 
         if command == "create":
-            <!!!REPLACEME with code for create command!!!>     
+            responseMessage = restconf_final.create()     
         elif command == "delete":
-            <!!!REPLACEME with code for delete command!!!>
+            responseMessage = restconf_final.delete()
         elif command == "enable":
-            <!!!REPLACEME with code for enable command!!!>
+            responseMessage = restconf_final.enable()
         elif command == "disable":
-            <!!!REPLACEME with code for disable command!!!>
+            responseMessage = restconf_final.disable()
         elif command == "status":
-            <!!!REPLACEME with code for status command!!!>
+            responseMessage = restconf_final.status()
         else:
             responseMessage = "Error: No command or unknown command"
         
 # 6. Complete the code to post the message to the Webex Teams room.
         
         # the Webex Teams HTTP headers, including the Authoriztion and Content-Type
-        postHTTPHeaders = HTTPHeaders = {"Authorization": <!!!REPLACEME!!!>, "Content-Type": <!!!REPLACEME!!!>}
+        # postHTTPHeaders = HTTPHeaders = {"Authorization": <!!!REPLACEME!!!>, "Content-Type": <!!!REPLACEME!!!>}
 
-        # The Webex Teams POST JSON data
-        # - "roomId" is is ID of the selected room
-        # - "text": is the responseMessage assembled above
-        postData = {"roomId": <!!!REPLACEME!!!>, "text": <!!!REPLACEME!!!>}
+        # # The Webex Teams POST JSON data
+        # # - "roomId" is is ID of the selected room
+        # # - "text": is the responseMessage assembled above
+        # postData = {"roomId": <!!!REPLACEME!!!>, "text": <!!!REPLACEME!!!>}
 
-        # Post the call to the Webex Teams message API.
-        r = requests.post(
-            "<!!!REPLACEME with URL of Webex Teams Messages API!!!>",
-            data=json.dumps(<!!!REPLACEME!!!>a),
-            headers=<!!!REPLACEME!!!>,
-        )
-        if not r.status_code == 200:
-            raise Exception(
-                "Incorrect reply from Webex Teams API. Status code: {}".format(r.status_code)
-            )
+        # # Post the call to the Webex Teams message API.
+        # r = requests.post(
+        #     "<!!!REPLACEME with URL of Webex Teams Messages API!!!>",
+        #     data=json.dumps(<!!!REPLACEME!!!>a),
+        #     headers=<!!!REPLACEME!!!>,
+        # )
+        # if not r.status_code == 200:
+        #     raise Exception(
+        #         "Incorrect reply from Webex Teams API. Status code: {}".format(r.status_code)
+        #     )
