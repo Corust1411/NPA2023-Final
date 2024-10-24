@@ -19,7 +19,7 @@ def create():
         "ietf-interfaces:interface": {
             "name": "Loopback65070236",
             "description": "creating loopback",
-            "type": "iana-if-type:secondsoftwareLoopback",
+            "type": "iana-if-type:softwareLoopback",
             "enabled": True,
             "ietf-ip:ipv4": {
                 "address": [
@@ -73,7 +73,7 @@ def enable():
         "ietf-interfaces:interface": {
             "name": "Loopback65070236",
             "description": "no shutdown loopback",
-            "type": "iana-if-type:secondsoftwareLoopback",
+            "type": "iana-if-type:softwareLoopback",
             "enabled": True,
         }
     }
@@ -101,7 +101,7 @@ def disable():
         "ietf-interfaces:interface": {
             "name": "Loopback65070236",
             "description": "shutdown loopback",
-            "type": "iana-if-type:secondsoftwareLoopback",
+            "type": "iana-if-type:softwareLoopback",
             "enabled": False,
         }
     }
@@ -139,6 +139,8 @@ def status():
         response_json = resp.json()
         admin_status = response_json['ietf-interfaces:interface']['admin-status']
         oper_status = response_json['ietf-interfaces:interface']['oper-status']
+        print("Admin Status:", admin_status)
+        print("Oper Status:", oper_status)
         if admin_status == 'up' and oper_status == 'up':
             return "Interface loopback 65070236 is enabled"
         elif admin_status == 'down' and oper_status == 'down':
