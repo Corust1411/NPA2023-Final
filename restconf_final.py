@@ -51,16 +51,19 @@ def create():
 
 
 def delete():
-    resp = requests.<!!!REPLACEME with the proper HTTP Method!!!>(
-        <!!!REPLACEME with URL!!!>, 
+    resp = requests.delete(
+        api_url, 
         auth=basicauth, 
-        headers=<!!!REPLACEME with HTTP Header!!!>, 
+        headers=headers, 
         verify=False
         )
 
     if(resp.status_code >= 200 and resp.status_code <= 299):
         print("STATUS OK: {}".format(resp.status_code))
-        return "<!!!REPLACEME with proper message!!!>"
+        return "Interface loopback 65070236 is deleted successfully"
+    elif(resp.status_code == 404):
+        print("Not found: {}".format(resp.status_code))
+        return "Cannot delete: Interface loopback 65070236"
     else:
         print('Error. Status Code: {}'.format(resp.status_code))
 
