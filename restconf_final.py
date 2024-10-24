@@ -18,8 +18,8 @@ def create():
     yangConfig = {
         "ietf-interfaces:interface": {
             "name": "Loopback65070236",
-            "description": "My second RESTCONF loopback",
-            "type": "iana-if-type:softwareLoopback",
+            "description": "creating loopback",
+            "type": "iana-if-type:secondsoftwareLoopback",
             "enabled": True,
             "ietf-ip:ipv4": {
                 "address": [
@@ -69,19 +69,29 @@ def delete():
 
 
 def enable():
-    yangConfig = <!!!REPLACEME with YANG data!!!>
+    yangConfig = {
+        "ietf-interfaces:interface": {
+            "name": "Loopback65070236",
+            "description": "no shutdown loopback",
+            "type": "iana-if-type:secondsoftwareLoopback",
+            "enabled": True,
+        }
+    }
 
-    resp = requests.<!!!REPLACEME with the proper HTTP Method!!!>(
-        <!!!REPLACEME with URL!!!>, 
-        data=json.dumps(<!!!REPLACEME with yangConfig!!!>), 
+    resp = requests.patch(
+        api_url, 
+        data=json.dumps(yangConfig), 
         auth=basicauth, 
-        headers=<!!!REPLACEME with HTTP Header!!!>, 
+        headers=headers, 
         verify=False
         )
 
     if(resp.status_code >= 200 and resp.status_code <= 299):
         print("STATUS OK: {}".format(resp.status_code))
-        return "<!!!REPLACEME with proper message!!!>"
+        return "Interface loopback 65070236 is enabled successfully"
+    elif(resp.status_code == 404):
+        print("Not found: {}".format(resp.status_code))
+        return "Cannot enable: Interface loopback 65070236"
     else:
         print('Error. Status Code: {}'.format(resp.status_code))
 
